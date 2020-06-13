@@ -47,6 +47,7 @@ defmodule ElixirMonitoringProm.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:geo, "~> 3.1.0"},
       {:geo_postgis, "~> 3.1.0"},
+      {:geohash, "~> 1.0.0"},
       {:faker, "~> 0.12.0"},
       {:prometheus, "~> 4.4.1"},
       {:prometheus_ex, "~> 3.0.5"},

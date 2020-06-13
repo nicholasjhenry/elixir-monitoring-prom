@@ -10,6 +10,7 @@ defmodule ElixirMonitoringProm.Application do
     ElixirMonitoringProm.PipelineInstrumenter.setup()
     ElixirMonitoringProm.RepoInstrumenter.setup()
     ElixirMonitoringProm.PrometheusExporter.setup()
+    ElixirMonitoringProm.Metrics.setup()
 
     # NOTE: Only for FreeBSD, Linux and OSX (experimental)
     # https://github.com/deadtrickster/prometheus_process_collector
