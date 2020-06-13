@@ -6,5 +6,6 @@
 ## Setup and run
 
     docker-compose up
-    curl -s -X GET "http://localhost:4000/api/breweries?zip_code=98052&mile_radius=4" | json
     # Visit http://localhost:3000 (admin/admin)
+    curl -s -X GET "http://localhost:4000/api/breweries?zip_code=98052&mile_radius=4" | json
+    elixir stress_test.exs
