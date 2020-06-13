@@ -19,6 +19,12 @@ defmodule ElixirMonitoringPromWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", ElixirMonitoringPromWeb do
+    pipe_through :api
+
+    get "/breweries", BreweryController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ElixirMonitoringPromWeb do
   #   pipe_through :api
