@@ -6,6 +6,22 @@ defmodule ElixirMonitoringProm.Application do
   use Application
 
   def start(_type, _args) do
+    ElixirMonitoringProm.PhoenixInstrumenter.setup()
+    ElixirMonitoringProm.PipelineInstrumenter.setup()
+    ElixirMonitoringProm.RepoInstrumenter.setup()
+    ElixirMonitoringProm.PrometheusExporter.setup()
+
+    # NOTE: Only for FreeBSD, Linux and OSX (experimental)
+    # https://github.com/deadtrickster/prometheus_process_collector
+    Prometheus.Registry.register_collector(:prometheus_process_collector)
+
+    :telemetry.attach(
+      "prometheus-ecto",
+      [:elixir_monitoring_prom, :repo, :query],
+      &ElixirMonitoringProm.RepoInstrumenter.handle_event/4,
+      nil
+    )
+
     children = [
       # Start the Ecto repository
       ElixirMonitoringProm.Repo,

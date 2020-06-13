@@ -50,5 +50,8 @@ defmodule ElixirMonitoringPromWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+
+  plug ElixirMonitoringProm.PrometheusExporter
+  plug ElixirMonitoringProm.PipelineInstrumenter
   plug ElixirMonitoringPromWeb.Router
 end

@@ -16,7 +16,27 @@ config :elixir_monitoring_prom, ElixirMonitoringPromWeb.Endpoint,
   secret_key_base: "nXbwINV+nqrU9HU+61jBEi7ycHrPpTSg9YXu4cHyDp53mNCAHFurjhVgmJXJsUH2",
   render_errors: [view: ElixirMonitoringPromWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: ElixirMonitoringProm.PubSub,
-  live_view: [signing_salt: "yftOQWRo"]
+  live_view: [signing_salt: "yftOQWRo"],
+  instrumenters: [ElixirMonitoringProm.PhoenixInstrumenter]
+
+config :prometheus, ElixirMonitoringProm.PipelineInstrumenter,
+  labels: [:status_class, :method, :host, :scheme, :request_path],
+  duration_buckets: [
+    10,
+    100,
+    1_000,
+    10_000,
+    100_000,
+    300_000,
+    500_000,
+    750_000,
+    1_000_000,
+    1_500_000,
+    2_000_000,
+    3_000_000
+  ],
+  registry: :default,
+  duration_unit: :microseconds
 
 # Configures Elixir's Logger
 config :logger, :console,
